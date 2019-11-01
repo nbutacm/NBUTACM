@@ -1,0 +1,183 @@
+/*
+  	使用优先队列优化Dijkstra算法
+	复杂度O(ElogE)
+	注意对vector<Edge>E[MAXN]进行初始化后加边 
+	权值必须为非负 
+*/
+#include<cstdio>
+#include<algorithm>
+#include<queue>
+#include<vector>
+#include<cstring>
+#include<cmath>
+using namespace std;
+const int INF=0x3f3f3f;
+const int MAXN=1e3+10;
+struct node{
+	int v;
+	double c;
+	node(int _v=0,double _c=0):v(_v),c(_c){}//构造函数 
+	bool operator <(const node &r)const{
+		return c>r.c;
+	}
+};
+struct Edge{
+	int v;
+	double c;
+	Edge(int _v=0,double _c=0):v(_v),c(_c){}
+}; 
+vector<Edge>E[MAXN];
+bool vis[MAXN];
+double dis[MAXN];
+void Dijkstra(int n,int start){//点的编号从1开始
+	memset(vis,false,sizeof(vis));
+	for(int i=1;i<=n;i++) dis[i]=INF; 
+	priority_queue<node>q;
+	while(!q.empty()) q.pop();
+	dis[start]=0;
+	q.push(node(start,0));
+	node tmp;
+	while(!q.empty()){
+		tmp=q.top();
+		q.pop();
+		int u=tmp.v;
+		if(vis[u]) continue;
+		vis[u]=true;
+		for(int i=0;i<E[u].size();i++){
+			int v=E[u][i].v;
+			double c=E[u][i].c;
+			if(!vis[v]&&dis[v]>dis[u]+c){
+				dis[v]=dis[u]+c;
+				q.push(node(v,dis[v]));
+			}
+		}
+	}
+}
+void addedge(int u,int v,double w){
+	E[u].push_back(Edge(v,w));
+}
+void init(){
+	for(int i=0;i<MAXN;i++) E[i].clear();
+}
+double dist(int x1,int y1,int x2,int y2){
+	double f=(x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+	return sqrt(f);
+}
+int main(){
+	int x[MAXN],y[MAXN],cot,a,b;
+	scanf("%d%d%d%d",&x[1],&y[1],&x[2],&y[2]);
+	cot=3;
+	while(scanf("%d%d",&a,&b)!=EOF){
+		x[cot]=a,y[cot]=b;
+		cot++;
+		while(scanf("%d%d",&a,&b)!=EOF){
+			if(a==-1&&b==-1) break;
+			x[cot]=a,y[cot]=b;
+			addedge(cot-1,cot,dist(x[cot-1],y[cot-1],x[cot],y[cot])/(40*1000/60));
+			addedge(cot,cot-1,dist(x[cot-1],y[cot-1],x[cot],y[cot])/(40*1000/60));
+			cot++;
+		}
+	}
+	for(int i=1;i<cot-1;i++){
+		for(int j=i+1;j<cot;j++){
+			addedge(i,j,dist(x[i],y[i],x[j],y[j])/(10*1000/60));
+			addedge(j,i,dist(x[i],y[i],x[j],y[j])/(10*1000/60));
+			//printf("%lf\n",dist(x[i],y[i],x[j],y[j])/(10*1000/60));
+		}
+	}
+	Dijkstra(cot-1,1);
+	printf("%0.lf",dis[2]);
+} 
+
+
+-----------------------------------------------------------------------------------------------
+
+#include<iostream>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+#include<map>
+#include<cstdio>
+#include<queue>
+#include<stack>
+
+using namespace std;
+
+const int INF = 0x3f3f3f3f;
+const int MAXN = 205;
+const double wsp = 10 * 1000 / 60;
+const double ssp = 40 * 1000 / 60;
+
+struct Node{
+    double x, y;
+}node[MAXN];
+
+struct ff{
+    int x, d;
+    ff(){}
+    ff( int a, double b ){ x = a; d = b; }
+    bool operator <( const ff & a )const{
+        return d > a.d;
+    }
+};
+
+int cnt;
+double cost[MAXN][MAXN];
+double dis[MAXN];
+
+double gdis( int pre, int pos ){
+    double dx = node[pre].x - node[pos].x;
+    double dy = node[pre].y - node[pos].y;
+    return sqrt( dx * dx + dy * dy );
+}
+
+void dij(){
+    for( int i = 1; i < MAXN; i++ )
+        dis[i] = INF;
+    dis[1] = 0;
+
+    priority_queue<ff> Q;
+    Q.push( ff( 1, dis[1]) );
+
+    while( !Q.empty() ){
+        ff temp = Q.top(); Q.pop();
+        int x = temp.x;
+        if( temp.d > dis[x] ) continue;
+        for( int i = 1; i < cnt; i++ ){
+            if( dis[i] > dis[x] + cost[x][i] ){
+                dis[i] = dis[x] + cost[x][i];
+                Q.push( ff( i, dis[i] ) );
+            }
+        }
+    }
+}
+
+int main(){
+    ios::sync_with_stdio( false );
+
+    for( int i = 0; i < MAXN; i++ )
+        for( int j = 0; j < MAXN; j++ )
+            cost[i][j] = INF;
+    
+    cin >> node[1].x >> node[1].y >> node[2].x >> node[2].y;
+    cnt = 3;
+
+    while( cin >> node[cnt].x >> node[cnt].y ){
+        cnt++;
+        while( cin >> node[cnt].x >> node[cnt].y, !( node[cnt].x == -1 && node[cnt].y == -1 ) ){
+            cost[cnt][cnt - 1] = cost[cnt - 1][cnt] = gdis( cnt - 1, cnt ) / ssp;
+            cnt++;
+        }
+    }
+
+    for( int i = 1; i < cnt - 1; i++ ){
+        cost[i][i] = 0;
+        for( int j = i + 1; j < cnt; j++ ){
+            cost[i][j] = cost[j][i] = min( cost[i][j], gdis( i, j ) / wsp );
+        }
+    }
+
+    dij();
+
+    cout << int( dis[2] + 0.5 );
+}

@@ -1,0 +1,77 @@
+#include<cstdio>
+#include<algorithm>
+#include<cstring>
+#include<queue>
+#include<vector>
+using namespace std;
+const int INF=0x3f3f3f3f;
+const int MAXN=1e6+10;
+struct node{
+	int v;
+	int c;
+	node(int _v=0,int _c=0):v(_v),c(_c){}//构造函数 
+	bool operator <(const node &r)const{
+		return c>r.c;
+	}
+};
+struct Edge{
+	int v,c;
+	Edge(int _v=0,int _c=0):v(_v),c(_c){}
+}; 
+vector<Edge>E[MAXN];
+bool vis[MAXN];
+int dis[MAXN];
+int a[MAXN],b[MAXN],c[MAXN];
+void Dijkstra(int n,int start){//点的编号从1开始
+	memset(vis,false,sizeof(vis));
+	for(int i=1;i<=n;i++) dis[i]=INF; 
+	priority_queue<node>q;
+	while(!q.empty()) q.pop();
+	dis[start]=0;
+	q.push(node(start,0));
+	node tmp;
+	while(!q.empty()){
+		tmp=q.top();
+		q.pop();
+		int u=tmp.v;
+		if(vis[u]) continue;
+		vis[u]=true;
+		for(int i=0;i<E[u].size();i++){
+			int v=E[u][i].v;
+			int c=E[u][i].c;
+			if(!vis[v]&&dis[v]>dis[u]+c){
+				dis[v]=dis[u]+c;
+				q.push(node(v,dis[v]));
+			}
+		}
+	}
+}
+void addedge(int u,int v,int w){
+	E[u].push_back(Edge(v,w));
+}
+int main(){
+	int n;
+	scanf("%d",&n);
+	while(n--){
+		int p,q;
+		memset(a,0,sizeof(a));
+		memset(b,0,sizeof(b));
+		memset(c,0,sizeof(c));
+		scanf("%d%d",&p,&q);
+		for(int i=0;i<=MAXN;i++) E[i].clear();
+		for(int i=0;i<q;i++){
+			scanf("%d%d%d",&a[i],&b[i],&c[i]);
+			addedge(a[i],b[i],c[i]);
+		}
+		Dijkstra(p,1);
+		long long sum=0;
+		for(int i=1;i<=p;i++)sum+=dis[i];
+		for(int i=0;i<=MAXN;i++) E[i].clear();
+		for(int i=0;i<q;i++){
+			addedge(b[i],a[i],c[i]);
+		}
+		Dijkstra(p,1);
+		for(int i=1;i<=p;i++) sum+=dis[i];
+		printf("%lld\n",sum);
+	}
+} 

@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+int pre[1005];
+int total;
+int find(int r)//查找根节点 
+{
+	return pre[r]==r?r:pre[r]=find(pre[r]);
+}
+
+void unite(int a,int b)
+{
+	int fa=find(a);
+	int fb=find(b);
+	if(fa!=fb)
+	{
+		pre[fa]=fb;total--;
+	}
+}
+
+int main()
+{
+	int p1,p2,f1,f2;
+	int n,m,k;
+	scanf("%d",&n);
+	while(n--)
+	{
+		//printf(":::::%d\n",n);
+		memset(pre,0,sizeof(pre));
+		scanf("%d %d",&m,&k);
+		for(int i=1;i<=m;i++)pre[i]=i;
+		total=m;
+		//printf("::::::%d\n",total);
+		for(int i=1;i<=k;i++)
+		{
+			scanf("%d %d",&p1,&p2);
+			unite(p1,p2);
+		}
+		printf("%d\n",total);
+		
+	}
+	return 0;
+}

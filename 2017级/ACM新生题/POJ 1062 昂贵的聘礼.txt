@@ -1,0 +1,66 @@
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+
+#define INF 0x3f3f3f3f
+const int MAXN = 110;
+int cost[MAXN][MAXN];
+int vis[MAXN], dis[MAXN], price[MAXN], level[MAXN];
+int n, m, p, l, x, t, v, ans;
+
+int dijkstra()
+{
+    for(int i = 0; i < n; i++)
+        dis[i] = price[i];
+    for(int i = 0; i < n; i++)
+    {
+        int minx = INF, k = -1;
+        for(int j = 0; j < n; j++)
+        {
+            if(!vis[j] && dis[j] < minx)
+                minx = dis[k = j];
+        }
+        vis[k] = 1;
+        for(int j = 0; j < n; j++)
+            if(dis[k] + cost[k][j] < dis[j] && ! vis[j])
+                dis[j] = dis[k] + cost[k][j];
+    }
+    return dis[0];
+}
+
+int main()
+{
+    while(scanf("%d%d", &m, &n) != EOF)
+    {
+        ans = INF;
+        memset(price, 0, sizeof(price));
+        memset(level, 0, sizeof(level));
+        memset(cost, 0x3f, sizeof(cost));
+        for(int i = 0; i < n; i++)
+        {
+            scanf("%d%d%d", &price[i], &level[i], &x);
+            for(int j = 0; j < x; j++)
+            {
+                scanf("%d%d", &t, &v);
+                cost[t-1][i] = v;
+            }
+        }
+        for(int i = 0; i < n; i++)
+        {
+            int ml = level[i];
+            for(int j = 0; j < n; j++)
+            {
+                if(level[j] - ml > m || ml > level[j])
+                    vis[j] = 1;
+                else
+                    vis[j] = 0;
+            }
+            int now = dijkstra();
+            ans = min(ans, now);
+        }
+        printf("%d\n", ans);
+    }
+    return 0;
+}

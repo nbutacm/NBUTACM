@@ -1,0 +1,47 @@
+#include<iostream>
+#include<queue>
+#include<string.h>
+using namespace std;
+struct node{
+	int x,ans;
+};
+//int a[100000+5];
+int dis[200000+100]={0};
+int n,k,ans=0;
+void bfs(int n){
+	dis[n]=1;
+	node u;
+	queue<node>q;
+	u.x=n,u.ans=0;
+	q.push(u);
+	while(!q.empty()){
+		u=q.front(),q.pop();
+		node v;
+		if(u.x==k){
+			ans=u.ans;
+			return;
+		}
+		if(u.x>=1&&dis[u.x-1]==0){
+			v.x=u.x-1,v.ans=u.ans+1;
+			dis[v.x]=1;
+			q.push(v);
+		}
+		if(u.x<k&&dis[u.x+1]==0){
+			v.x=u.x+1,v.ans=u.ans+1;
+			dis[v.x]=1;
+			q.push(v);
+		}
+		if(u.x<k&&dis[u.x*2]==0){
+			v.x=u.x*2,v.ans=u.ans+1;
+			dis[v.x]=1;
+			q.push(v);
+		}
+	}
+}
+int main(){
+	while(cin>>n>>k){
+		memset(dis,0,sizeof(dis));
+		bfs(n);
+		cout<<ans<<endl;
+	}
+} 

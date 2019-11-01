@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+double A,B,C,D,E,F,Ai,Bi,tan,sum,kefan;
+int main() {
+	cin>>A>>B>>C>>D>>E>>F;
+	Ai=A*E,Bi=B*E;
+	double max1=-1,max2=1;
+	for(int a = 0;a*A*100<=F;a++)
+    for(int b = 0;b*B*100<=F-a*A*100;b++)
+    for(int c = 0;c*C<=F-a*A*100-b*B*100;c++)
+    for(int d = 0;d*D<=F-a*A*100-b*B*100-c*C;d++)
+    {
+        tan = c*C+d*D;
+        sum = A*a*100+B*b*100+tan;
+        kefan = Ai*a+Bi*b;
+        if(kefan<tan||sum>F)continue;
+ 
+        if(sum!=0&&tan/sum>max2/max1){
+            max1 = sum;
+            max2 = tan;
+        }
+    }
+    cout<<(int)max1<<" "<<(int)max2<<endl;
+	return 0;
+}

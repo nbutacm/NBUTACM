@@ -1,0 +1,165 @@
+/*
+  	使用优先队列优化Dijkstra算法
+	复杂度O(ElogE)
+	注意对vector<Edge>E[MAXN]进行初始化后加边 
+	权值必须为非负 
+*/
+#include<cstdio>
+#include<algorithm>
+#include<queue>
+#include<vector>
+#include<cstring>
+#include<cmath>
+using namespace std;
+const int INF=0x3f3f3f;
+const int MAXN=1e3+10;
+struct node{
+	int v;
+	double c;
+	node(int _v=0,double _c=0):v(_v),c(_c){}//构造函数 
+	bool operator <(const node &r)const{
+		return c>r.c;
+	}
+};
+struct Edge{
+	int v;
+	double c;
+	Edge(int _v=0,double _c=0):v(_v),c(_c){}
+}; 
+vector<Edge>E[MAXN];
+bool vis[MAXN];
+double dis[MAXN];
+void Dijkstra(int n,int start){//点的编号从1开始
+	memset(vis,false,sizeof(vis));
+	for(int i=1;i<=n;i++) dis[i]=INF; 
+	priority_queue<node>q;
+	while(!q.empty()) q.pop();
+	dis[start]=0;
+	q.push(node(start,0));
+	node tmp;	
+	while(!q.empty()){
+		tmp=q.top();
+		q.pop();
+		int u=tmp.v;
+		if(vis[u]) continue;
+		vis[u]=true;
+		for(int i=0;i<E[u].size();i++){
+			int v=E[u][i].v;
+			double c=E[u][i].c;
+			if(!vis[v]&&dis[v]>max(dis[u],c)){
+				dis[v]=max(dis[u],c);
+				q.push(node(v,dis[v]));
+			}
+		}
+	}
+}
+void addedge(int u,int v,double w){
+	E[u].push_back(Edge(v,w));
+}
+void init(){
+	for(int i=0;i<MAXN;i++) E[i].clear();
+}
+double dist(int x1,int y1,int x2,int y2){
+	double f=(x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+	return sqrt(f);
+}
+int t,n,u,v,w;
+int main(){
+	int cnt=1;
+	int x[MAXN],y[MAXN];
+	while(scanf("%d",&n)==1){
+		if(n==0) break;
+		for(int i=1;i<=n;i++){
+			scanf("%d%d",&x[i],&y[i]);
+			E[i].clear();
+		}
+		for(int i=1;i<=n-1;i++){
+			for(int j=i+1;j<=n;j++){
+				double w=dist(x[i],y[i],x[j],y[j]);
+				addedge(i,j,w);
+				addedge(j,i,w);
+			}
+		}
+		Dijkstra(n,1);
+		printf("Scenario #%d\n",cnt++);
+        printf("Frog Distance = %.3lf\n\n",dis[2]);
+	}
+	
+}
+
+------------------------------------------------
+//使用普通Dijkstra算法
+
+/*
+   题意：就是源点到终点有多条的路径，每一条路径中都有一段最大的距离！
+    求这些路径中最大距离的最小值！
+    
+   Dijkstra, Floyd, spfa都是可以的！只不过是将松弛的条件变一下就行了！
+
+   想了一下，这道题用最小生成树做也可以啊，图总是连通的嘛!所以建一棵最小
+   生成树，然后dfs一下，从源点1，到终点2的路径上，查找边长最大的路径！ 
+   附上代码..... 
+*/
+#include<cstdio>
+#include<algorithm>
+#include<cstring>
+#include<cmath>
+using namespace std;
+const int INF=0x3f3f3f;
+const int MAXN=1e3+10;
+int t,n,u,v,w;
+double map[MAXN][MAXN];
+bool vis[MAXN];
+double dis[MAXN];
+void dijkstra() {
+	int v;
+	
+	for(int i=1;i<=n;i++){
+		vis[i]=false;
+		dis[i]=INF;
+	}
+	dis[1]=0;
+	for(int i=1;i<=n;i++){
+		double min=INF;
+		for(int j=1;j<=n;j++) {
+			if (!vis[j]&&dis[j]<min) {
+				v=j;
+				min=dis[j];
+			}
+		}	
+		vis[v]=true;
+		for(int j=1;j<=n;j++){
+			if (!vis[j] && dis[j] > max(map[v][j],dis[v])) {
+				dis[j] = max(map[v][j],dis[v]);
+			}	
+		}	
+
+	}
+}
+double dist(int x1,int y1,int x2,int y2){
+	double f=(x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+	return sqrt(f);
+}
+
+int main(){
+	int cnt=1;
+	int x[MAXN],y[MAXN];
+	while(scanf("%d",&n)==1&&n!=0){
+		for(int i=1;i<=n;i++){
+			scanf("%d%d",&x[i],&y[i]);
+		}
+		for(int i=1;i<=n;i++){
+			for(int j=i;j<=n;j++){
+				if(i==j) map[i][j]=0;
+				else{
+					double w=dist(x[i],y[i],x[j],y[j]);
+					map[i][j]=map[j][i]=w;
+				}
+			}
+		}
+		dijkstra();
+		printf("Scenario #%d\n",cnt++);
+        printf("Frog Distance = %.3lf\n\n",dis[2]);
+	}
+	
+}

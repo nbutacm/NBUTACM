@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+int a[2005];
+int b[2005];
+int main()
+{
+	int n,i,j;
+	while(cin>>n)
+	{
+		
+		memset(a,0,sizeof(a));
+		memset(b,0,sizeof(b));
+		for(i=1;i<=n;i++)
+		{
+			cin>>a[i];
+			b[a[i]]++;
+		}
+		for(i=2000;i>=1;i--)
+		{
+			b[i]=b[i]+b[i+1];
+		}
+		for(i=1;i<=n;i++)
+		{
+			if(i==1) cout<<b[a[i]+1]+1;
+			else cout<<" "<<b[a[i]+1]+1;
+		}
+		cout<<endl;
+	}
+	return 0;
+}

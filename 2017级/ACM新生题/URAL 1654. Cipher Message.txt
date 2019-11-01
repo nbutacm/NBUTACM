@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+stack<char> p;
+
+int main(){
+    string s;
+    while(cin>>s){
+        int len = s.size();
+        for(int i=0; i<len; i++){
+            if(!p.empty() && p.top() == s[i]) p.pop();
+            else p.push(s[i]);
+        }
+        s = "";
+        while(!p.empty()){
+            s += p.top();
+            p.pop();
+        }
+        reverse(s.begin(), s.end());
+        cout<<s<<endl;
+    }
+    return 0;
+}

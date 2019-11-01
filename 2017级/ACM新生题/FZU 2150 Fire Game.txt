@@ -1,0 +1,100 @@
+#include<cstdio>
+#include<queue>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+#define inf 10000
+struct point
+{
+    int a,b;
+};
+int n,m,d[11][11],dir[4][2]={-1,0,1,0,0,1,0,-1};
+char map[11][11];
+int bfs(point x,point y)
+{
+    queue<point>q;
+    point t,tt;
+    q.push(x);q.push(y);
+    memset(d,inf,sizeof(d));
+    d[x.a][x.b]=0; d[y.a][y.b]=0;
+    while(!q.empty())
+    {
+        t=q.front();
+        q.pop();
+        for(int i=0;i<4;i++)
+        {
+            tt.a=t.a+dir[i][0];
+            tt.b=t.b+dir[i][1];
+            if(tt.a>=0&&tt.a<n&&tt.b>=0&&tt.b<m&&map[tt.a][tt.b]=='#'&&d[tt.a][tt.b]>d[t.a][t.b]+1)
+            {
+                d[tt.a][tt.b]=d[t.a][t.b]+1;
+                q.push(tt);
+            }
+        }
+    }
+    int res=0;   //每次枚举两个点，遍历完后，如果有点没有遍历到，那 res肯定等于inf
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            //printf("%d ",d[i][j]);
+            if(map[i][j]=='#')
+        res=max(res,d[i][j]);
+        }
+        //printf("\n");
+    }
+    return res;
+}
+
+int main()
+{
+    //freopen("a.txt","r",stdin);
+    int t,cas=1;
+    point s1,s2;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int count=0;
+        scanf("%d%d",&n,&m);
+        getchar();
+        for(int i=0;i<n;i++)
+        {
+            scanf("%s",map[i]);
+            //printf("%s\n",map[i]);
+            for(int j=0;j<m;j++)
+                if(map[i][j]=='#') count++;
+        }
+        printf("Case %d: ",cas++);
+        if(count<=2)
+        {
+            printf("0\n");
+            continue;
+        }
+        int cnt=inf;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(map[i][j]=='#')
+                {
+                    for(int l=0;l<n;l++)
+                    {
+                        for(int k=0;k<m;k++)
+                        {
+                        if(l<i&&k<=j) continue;
+                        if(map[l][k]=='#')
+                        {
+                        s1.a=i;s1.b=j;s2.a=l;s2.b=k;
+                        int ans=bfs(s1,s2);
+                        cnt=min(ans,cnt);
+                        }
+                        }
+                    }
+                }
+            }
+        }
+        if(cnt==inf) printf("-1\n");  //如果枚举任意两个点 cnt都是inf输入-1
+        else printf("%d\n",cnt);
+    }
+    return 0;
+}

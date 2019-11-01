@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+long long b,res;
+int main(){
+	int T,t;
+	cin>>T;
+	string a;
+	t=T;
+	while(T--){
+		res=0;
+		cin>>a>>b;
+		if(b<0)b=-b;
+		int n=a.length();
+		for(int i=0;i<n;i++){
+			if(a[i]=='-')continue;
+			res=(res*10+a[i]-'0')%b;
+		}
+		cout<<"Case "<<t-T<<": ";
+		if(res==0)
+			cout<<"divisible"<<endl;
+		else
+			cout<<"not divisible"<<endl;
+	}
+	return 0;
+}

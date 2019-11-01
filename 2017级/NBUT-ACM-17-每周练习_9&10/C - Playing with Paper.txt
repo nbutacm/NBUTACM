@@ -1,0 +1,19 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+	long long n,m,c;
+	while(cin>>n>>m)
+	{
+		c=0;
+		while(m!=0)
+		{
+			c=c+n/m;
+			n=n%m;
+			swap(n,m);
+		}
+		cout<<c<<endl;
+	}
+	return 0;
+}

@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+char A[10005];
+char B[10005];
+
+int fa, fb;
+
+void swap(char *a, int i, int j)
+{
+    /**
+     *  '1'的 asci 码是49, '0'的asci码是48, '1' - '0'之后是1， 而1本身的asci码就是1
+     *  所以 数字字符减'0'可以实现字符转数字.
+     *
+     *  char是字符型，可是字符在计算机内部同样是用二进制数表示的，因此，从这个意义上讲字符也好，数字也好，一律是用二进制数表示的。
+     *
+     *  char是8位二进制，int是16位，只是范围有差别。
+     *  所以char存数字没有问题
+     *
+     */
+    char t = a[i]-'0';
+    a[i] = a[j]-'0';
+    a[j] = t;
+}
+
+void add(char *a, char *b)
+{
+    int la = strlen(a),lb = strlen(b);
+
+    int i,j,c=0,s,l;
+
+    //反转输入数字，使他符合习惯,使数字右对齐
+    for(i=fa,j=la-1; i<=j; ++i,--j) swap(a,i,j);
+    for(i=fb,j=lb-1; i<=j; ++i,--j) swap(b,i,j);
+
+    for(i=fa; i<la||i<lb; ++i)
+    {
+        s = a[i] + b[i] + c;
+        c = s/10;
+        a[i] = s%10;
+    }
+
+    //存储结果的时候再次反转数组，方便计算
+    a[i] = c;
+
+    l = c ? i : i-1;
+
+    if(fa) printf("-");
+
+    for(i=l; i>=fa; --i) printf("%d", a[i]);
+}
+
+int cmp(char *a, char *b)
+{
+  //除去符号，比较两个数大小
+    int i,j,la,lb;
+
+    la = strlen(a);
+    lb = strlen(b);
+
+    if(la-fa>lb-fb)
+      return 1;
+    else if(la-fa<lb-fb)
+      return 0;
+    else
+    {
+      for(i=0; i<la&&a[i+fa]==b[i+fb]; ++i);
+        return a[i+fa]>b[i+fb];
+    }
+}
+
+void minus(char *a, char *b)
+{
+    char *t;
+    int i,j,ft,la,lb,c,l,s;
+
+    if(!cmp(a,b))
+    {
+        t=a;
+        a = b;
+        b = t;
+
+        ft = fa;
+        fa = fb;
+        fb = ft;
+    }
+
+    la = strlen(a);
+    lb = strlen(b);
+
+    for(i=fa,j=la-1; i<=j; ++i,--j) swap(a,i,j);
+    for(i=fb,j=lb-1; i<=j; ++i,--j) swap(b,i,j);
+
+    c = 0;
+    l = -1;
+
+    for(i=0; i+fa<la; ++i)
+    {
+        s = a[i+fa]-b[i+fb]-c>=0 ? 0 : 1;
+        // 如果a[i+fa] > b[i+fb]那么 (10+a[i+fa]-b[i+fb])%10对结果不影响，都是取个位
+        // 如果a[i+fa] < b[i+fb]那么 10+a[i+fa]-b[i+fb]相当于借了一位然后相减，求模后也不影响结果
+        // 写的漂亮
+        a[i+fa] = (10+a[i+fa]-b[i+fb]-c)%10;
+        l = a[i+fa] ? i+fa : l;
+        c = s;
+    }
+
+    if(l<0)
+        printf("0");
+    else
+    {
+        if(fa) printf("-");
+        for(i=l; i>=fa; --i) printf("%d", a[i]);
+    }
+}
+
+int main()
+{
+    scanf("%s%s", A, B);
+
+    /**
+     *  如果 '-' == A[0] 说明A是负数，同时fa等于1,然后可以用fa表示数组的第一个数字的位置
+     *  如果有'-' 则从 1开始，否则从0开始，写的很巧妙
+     */
+
+    fa = ('-'==A[0]);
+    fb = ('-'==B[0]);
+
+    if(fa^fb) // ^ 异或 同真为假 同假为假， 符号相异为真
+        minus(A,B);
+    else
+        add(A,B);
+}

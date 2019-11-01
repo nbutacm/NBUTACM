@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<queue>
+#include<vector>
+
+using namespace std;
+const int maxn=2005;
+vector<pair<int,int> >E[maxn];//类似于 int road[maxn][maxn];
+int d[maxn];
+int n,m;
+
+void init(){
+    for(int i=0;i<maxn;i++)E[i].clear();
+    for(int i=0;i<maxn;i++)d[i]=1e9;
+}
+
+int main()
+{
+    init();
+    scanf("%d%d",&n,&m);
+    for(int i=0;i<n;i++)
+    {
+        int x,y,z;scanf("%d%d%d",&x,&y,&z);
+        E[x].push_back(make_pair(y,z));
+        E[y].push_back(make_pair(x,z));
+    }
+    priority_queue<pair<int,int> >Q;
+    Q.push(make_pair(-d[1],1));
+    d[1]=0;
+    while(!Q.empty()){
+        int now=Q.top().second;
+        Q.pop();
+        for(int i=0;i<E[now].size();i++)
+        {
+            int v=E[now][i].first;
+            if(d[v]>d[now]+E[now][i].second)
+            {
+                d[v]=d[now]+E[now][i].second;
+                Q.push(make_pair(-d[v],v));
+            }
+        }
+    }
+    printf("%d\n",d[m]);
+}
+//16ms
+-----------------------------------------------------------
+
+/*
+dijkstra
+Memory 4108K
+Time   125MS
+*/
+
+#include <iostream>
+#include<stdio.h>
+using namespace std;
+#define inf 1<<29
+#define MAXV 1005
+
+int map[MAXV][MAXV];
+int n, m;
+
+void dijkstra() {
+	int i, j, min, v;
+	int d[MAXV];
+	bool vis[MAXV];
+
+	for (i = 1; i <= n; i++) {
+		vis[i] = 0;
+		d[i] = map[1][i];
+	}
+	//d[n]表示从1到n的最短距离
+	for (i = 1; i <= n; i++) {
+		min = inf;
+
+		for (j = 1; j <= n; j++) {
+			if (!vis[j] && d[j]<min) {
+				v = j;
+				min = d[j];
+			}
+		}	
+		vis[v] = 1;
+
+		for (j = 1; j <= n; j++) {
+			if (!vis[j] && d[j] > map[v][j] + d[v]) {
+				d[j] = map[v][j] + d[v];
+			}	
+		}	
+
+	}
+	printf("%d\n", d[n]);
+}
+void init() {
+	int i, j;
+	for (i = 1; i <= n; i++)
+		for (j = 1; j <= n; j++)
+			if (i == j)
+				map[i][i] = 0;
+			else map[i][j] = map[j][i] = inf;
+}
+int main() {
+	int i, j, a, b, c;
+	while (~scanf("%d%d", &m, &n)) {
+		init();
+		for (i = 1; i <= m; i++) {
+			scanf("%d%d%d", &a, &b, &c);
+			if (map[a][b]>c) map[a][b] = map[b][a] = c;
+		}
+		dijkstra();
+	}
+	return 0;
+}

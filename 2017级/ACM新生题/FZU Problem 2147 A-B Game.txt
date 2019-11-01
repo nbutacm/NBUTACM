@@ -1,0 +1,21 @@
+#include <cstdio>
+#define LL __int64
+int main()
+{
+	int cas=1;
+	LL t,a,b;
+	scanf("%I64d",&t);
+	while(t--)
+	{
+		scanf("%I64d%I64d",&a,&b);
+		LL i=0;
+		while(a>b)
+		{
+			a/=2;
+			i++;
+		}
+		printf("Case %d: ",cas++);
+		printf("%I64d\n",i);
+	}
+	return 0;
+}

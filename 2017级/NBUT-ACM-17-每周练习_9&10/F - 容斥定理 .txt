@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+     	ll n,t;
+     	cin>>n;
+       	t=0;
+		t += n / 2;
+		t += n / 3;
+		t += n / 5;
+		t += n / 7;
+		t -= n / 2 / 3;
+		t -= n / 2 / 5;
+		t -= n / 2 / 7;
+		t -= n / 3 / 5;
+		t -= n / 3 / 7;
+		t -= n / 5 / 7;
+		t += n / 2 / 3 / 5;
+		t += n / 2 / 3 / 7;
+		t += n / 2 / 5 / 7;
+		t += n / 3 / 5 / 7;
+		t -= n / 2 / 3 / 5 / 7;
+		cout<<n-t<<endl;
+	return 0;
+}

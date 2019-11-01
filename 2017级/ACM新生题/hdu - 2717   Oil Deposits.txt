@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdlib.h>
+char maze[100][100];
+int M,N,g,dir[8][2]= {{-1,0},{0,-1},{0,1},{1,0},{1,1},{1,-1},{-1,1},{-1,-1}}; //八个方向
+void DFS(int x,int y){
+	int dx,dy,i;
+	maze[x][y] = '*';//找到一个@，先变*了再说。
+	for (i=0; i<8; i++){
+		dx = x+dir[i][0];//探索的下一个方向，8个（i）。
+		dy = y+dir[i][1];
+		if (dx>=0&&dx<M&&dy>=0&&dy<N&&maze[dx][dy]=='@'){
+			DFS(dx,dy);
+		}
+	}
+}
+
+int main(){
+	int i,j;
+	while(scanf("%d %d",&M,&N)==2){
+		getchar();//接收一个换行符
+		g=0;
+		if(N==0&&M==0)	return 0;
+		for(i=0; i<M; i++)
+			gets(maze[i]);//接收一个字符串，一个一个接收不行！不知道为什么？就是不行
+		for(i=0; i<M; i++){
+			for(j=0; j<N; j++)
+				if(maze[i][j]=='@')	{
+					g++;//每检测到，一个加一计数，与他连在一块的@，全部被深度探索标记为*，就记为一块
+					DFS(i,j);
+				}
+		}
+		printf("%d\n",g);
+	}
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include<iostream>
+#include<string.h>
+#include<queue>
+using namespace std;
+
+int vis[100005];
+int n,m,sum;
+struct str
+{
+	int x,sum;
+};
+int bfs(int a)
+{
+	memset(vis,0,sizeof(vis));
+	queue<str>Q;
+	str tmp,now;
+	tmp.x=a;tmp.sum=0;
+	Q.push(tmp);
+	while(!Q.empty())
+	{
+		now=Q.front();
+		Q.pop();
+		if(now.x==m) return now.sum;
+		if(now.x-1>=0 && now.x<=100000 && vis[now.x-1]==0)
+		{
+			vis[now.x-1]=1;
+			tmp.sum=now.sum+1;
+			tmp.x=now.x-1;
+			Q.push(tmp);
+		}
+		if(now.x+1<=100000 && now.x>=0 && vis[now.x+1]==0)
+		{
+			vis[now.x+1]=1;
+			tmp.sum=now.sum+1;
+			tmp.x=now.x+1;
+			Q.push(tmp);
+		}
+		if(now.x*2<=100000 &&now.x>=0 && vis[now.x*2]==0)
+		{
+			vis[now.x*2]=1;
+			tmp.sum=now.sum+1;
+			tmp.x=now.x*2;
+			Q.push(tmp);
+		}
+	}
+}
+int main()
+{
+	while(cin>>n>>m)
+	{
+		cout<<bfs(n)<<endl;
+	}
+	return 0;
+}

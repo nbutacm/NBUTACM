@@ -1,0 +1,46 @@
+#include<cstdio>
+#include<cmath>
+using namespace std;
+const double eps=1e-8;
+
+struct point
+{
+    int x,y;
+}p[35];
+
+double area(point a,point b,point c)  //三角形面积公式
+{
+    return fabs(1.0*(a.x*b.y+b.x*c.y+c.x*a.y-a.x*c.y-b.x*a.y-c.x*b.y))/2;
+}
+
+bool check(point a,point b,point c,point d) //判断是否是凸边形，注意 这里假设a为四边形的内点，要跟下面四重循环对应
+{
+    if(fabs(area(b,c,d)-area(a,b,c)-area(a,b,d)-area(a,c,d))<eps) //面积相等
+    return 0;
+    return 1;
+}
+
+int main()
+{
+    int t,i,j,k,n,a,b,ans;
+    scanf("%d",&t);
+    for(k=1;k<=t;k++)
+    {
+        ans=0;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+            scanf("%d%d",&p[i].x,&p[i].y);
+        if(n<4) printf("Case %d: %d\n",k,ans);
+        else
+        {
+            for(i=0;i<n;i++)
+                for(j=i+1;j<n;j++)
+                for(a=j+1;a<n;a++)
+                for(b=a+1;b<n;b++)
+                if(check(p[i],p[j],p[a],p[b])&&check(p[j],p[i],p[a],p[b])&&check(p[a],p[i],p[j],p[b])&&check(p[b],p[i],p[j],p[a]))
+                ans++;
+            printf("Case %d: %d\n",k,ans);
+        }
+    }
+    return 0;
+}
