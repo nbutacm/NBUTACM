@@ -337,7 +337,7 @@ int main(void) {
 
 - 访问
 
-    - 使用下标 `mp[key]`，返回对应的`value`
+    - 使用下标 `mp[key]`，返回对应的`vlaue`
 
     - 使用迭代器 或 C++11的`rang_for`
 
