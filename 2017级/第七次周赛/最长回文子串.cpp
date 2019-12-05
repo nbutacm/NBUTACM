@@ -1,7 +1,7 @@
 
 /**************************************/
-// ����ķ���  
-//ʱ�临�Ӷ�  O(n^3)   ��ദ�� 1000 ���ȵ��ַ��� 
+// 最暴力的方法  
+//时间复杂度  O(n^3)   最多处理 1000 长度的字符串 
 #include<iostream>
 #include<string>
 #include<algorithm>
@@ -33,8 +33,8 @@ int main(){
 } 
 
 /**************************************************/
-// ÿ�δ�һ���ַ���ʼ���������� 
-////ʱ�临�Ӷ�  O(n^2)   ��ദ�� 10000 ���ȵ��ַ���  
+// 每次从一个字符开始向两边延伸 
+////时间复杂度  O(n^2)   最多处理 10000 长度的字符串  
 #include<iostream>
 #include<string>
 #include<algorithm>
@@ -74,8 +74,8 @@ int main(){
 	ans=1;
 	for(int i=0;i<s.size();i++){
 		int t1=0,t2=2;
-		t1=find1(s,i);  //�����Ļ��Ĵ� 
-		t2=find2(s,i);  //ż���Ļ��Ĵ� 
+		t1=find1(s,i);  //奇数的回文串 
+		t2=find2(s,i);  //偶数的回文串 
 		ans=max(ans,max(t1,t2));
 	}
 	cout<<ans<<endl;	
@@ -83,9 +83,9 @@ int main(){
 
 
 /********************************************************/
-// ���������� Manacher�㷨
-//  http://www.cnblogs.com/zyf0163/p/4780174.html?ptvd    �㷨���忴������� 
-////ʱ�临�Ӷ�  O(nlogn)   ���Դ��� 1000000 ���ȵ��ַ���
+// 最最厉害的 Manacher算法
+//  http://www.cnblogs.com/zyf0163/p/4780174.html?ptvd    算法具体看这个链接 
+////时间复杂度  O(nlogn)   可以处理 1000000 长度的字符串
 #include <cstdio>
 #include <cstring>
 #include <algorithm>

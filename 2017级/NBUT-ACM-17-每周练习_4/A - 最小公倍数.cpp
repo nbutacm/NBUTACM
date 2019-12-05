@@ -14,4 +14,4 @@ int main(){
     return 0;
 }
 
-//a*b/gcd(a,b)  ¿ÉÄÜ»á·¢Éú a*b ³¬³öÊı¾İ·¶Î§¶øµ¼ÖÂruntime error 
+//a*b/gcd(a,b)  å¯èƒ½ä¼šå‘ç”Ÿ a*b è¶…å‡ºæ•°æ®èŒƒå›´è€Œå¯¼è‡´runtime error 

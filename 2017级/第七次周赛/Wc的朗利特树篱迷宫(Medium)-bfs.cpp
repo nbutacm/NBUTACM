@@ -32,7 +32,7 @@ int bfs(int x,int y){
 			int yy=v.y+dy[i];
 			if(xx>=0&&xx<n&&yy>=0&&yy<n&&vis[xx][yy]==0&&pic[xx][yy]!='#'){
 				if(pic[xx][yy]=='E'){
-					return v.step+1;          //根据bfs的特点，第一个找到的一定是路程最短的 
+					return v.step+1;          //鏍规嵁bfs鐨勭壒鐐癸紝绗竴涓壘鍒扮殑涓�瀹氭槸璺▼鏈�鐭殑 
 				}
 				else{
 					vis[xx][yy]=1;

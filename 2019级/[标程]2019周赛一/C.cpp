@@ -9,7 +9,7 @@ int main(){
     while(t--){
         cin >> n;
         if (n == 1) {
-            cout << "小郁是个大骗子！！！" << endl;
+            cout << "灏忛儊鏄釜澶ч獥瀛愶紒锛侊紒" << endl;
             continue;
         }
         cout << n << " " << n+1 << " " << n*(n+1) << endl; 

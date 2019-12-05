@@ -11,9 +11,9 @@ int main(){
 	while(scanf("%d",&n)!=EOF){
 		getchar();
 		gets(s);
-		int dp[10005];      //¼ÇÂ¼µÚi¿ÅÊıÇ°ÓĞ¶àÉÙ¸ö¿Õ¸ñ 
+		int dp[10005];      //è®°å½•ç¬¬ié¢—æ•°å‰æœ‰å¤šå°‘ä¸ªç©ºæ ¼ 
 		dp[0]=0;
-		int m=1;            //Ê÷µÄÊıÁ¿ 
+		int m=1;            //æ ‘çš„æ•°é‡ 
 		int kong=0;
 		int ans=0;
 		int len=strlen(s);
@@ -25,7 +25,7 @@ int main(){
 			else kong++;
 		}
 		for(int i=n+2;i<m;i++){
-			ans=max(ans,dp[i]-dp[i-1-n]);        //ÇóÁ½¿ÃÊ÷Ö®¼äµÄ¿Õ¸ñÊı  ±éÀúÒ»±éÈ¡×î´óÖµ 
+			ans=max(ans,dp[i]-dp[i-1-n]);        //æ±‚ä¸¤æ£µæ ‘ä¹‹é—´çš„ç©ºæ ¼æ•°  éå†ä¸€éå–æœ€å¤§å€¼ 
 		}
 		printf("%d\n",ans);
 	} 

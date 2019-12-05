@@ -1,4 +1,4 @@
-//һ����n�죬ÿ7��Ϊһ�ܣ�����������Ϣ������һ������ں���̼���
+//一年有n天，每7天为一周，周六周天休息，求这一年最长假期和最短假期
     
 #include<iostream>      
 using namespace std;  

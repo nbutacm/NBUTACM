@@ -8,7 +8,7 @@ struct node {
 }p[N];
 bool cmp(node x, node y)
 {
-    return x.b < y.b;             //线段尾部升序
+    return x.b < y.b;             //绾挎灏鹃儴鍗囧簭
 }
 int main()
 {
@@ -18,10 +18,10 @@ int main()
         scanf("%d%d",&p[i].a,&p[i].b);
     }
     sort(p, p+n, cmp);
-    int k = 1;                    //因为初始定义的第一条线段肯定独立， 
+    int k = 1;                    //鍥犱负鍒濆瀹氫箟鐨勭涓�鏉＄嚎娈佃偗瀹氱嫭绔嬶紝 
     int ans = p[0].b;
     for(int i = 1;i < n; i++) {
-        if(ans <= p[i].a) {       //可以衔接所以是小于等于 
+        if(ans <= p[i].a) {       //鍙互琛旀帴鎵�浠ユ槸灏忎簬绛変簬 
             k++;
             ans = p[i].b;
         }

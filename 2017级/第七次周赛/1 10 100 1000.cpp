@@ -1,11 +1,11 @@
 /******************************************/
-//ÀûÓÃmap½øĞĞ´ò±í 
+//åˆ©ç”¨mapè¿›è¡Œæ‰“è¡¨ 
 
 #include<iostream>
 #include<map>
 using namespace std;
 
-map<int,int>m;    //¼ÇÂ¼µÚiÎ»ÖÃÊÇ1»¹ÊÇ0 
+map<int,int>m;    //è®°å½•ç¬¬iä½ç½®æ˜¯1è¿˜æ˜¯0 
 int n,t;
 
 void init(){
@@ -30,7 +30,7 @@ int main(){
 #include<map>
 using namespace std;
 
-int a[50000];   //¼ÇÂ¼µÚi¸ö1ÊÇÔÚµÚ¼¸¸öÎ»ÖÃ 
+int a[50000];   //è®°å½•ç¬¬iä¸ª1æ˜¯åœ¨ç¬¬å‡ ä¸ªä½ç½® 
 int n,t;
 
 int init(){
@@ -66,7 +66,7 @@ int main(){
 
 /**************************************************/
 
-//´¿´âµÄÊıÑ§µÄ·½·¨
+//çº¯ç²¹çš„æ•°å­¦çš„æ–¹æ³•
  
 #include <iostream>
 #include <cstdio>

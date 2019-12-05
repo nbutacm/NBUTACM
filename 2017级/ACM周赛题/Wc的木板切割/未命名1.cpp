@@ -16,7 +16,7 @@ struct cmp1
 {  
      bool operator ()(int x, int y)  
     {  
-        return x > y;//п║╣дсеох╪╤╦ъ  
+        return x > y;//Е╟▐Г └Д╪≤Е┘┬Г╨╖И╚≤  
     }  
 };  
 
@@ -27,7 +27,7 @@ int main(){
 		memset(a,0,sizeof(a));
 		/*********************************************
 		
-		priority_queue<int,vector<int>, cmp1>q;              //сеох╤сапдёдБ  
+		priority_queue<int,vector<int>, cmp1>q;              //Д╪≤Е┘┬И≤÷Е┬≈Ф╗║Ф▀÷  
 		for(int i=0;i<n;i++){
 			cin>>a[i];
 			q.push(a[i]);
@@ -48,8 +48,8 @@ int main(){
 		int N=n;
 		int ans=0;
 		while(N>=2){ 
-			sort(a,a+N,cmp);      //вт╤╗рЕcmp╨╞йЩё╛й╧фД╢с╢С╣╫п║ее 
-			int m1=a[N-1],m2=a[N-2];  //m1н╙вНп║ё╛m2н╙╢нп║
+			sort(a,a+N,cmp);      //Х┤╙Е╝ Д╧┴cmpЕ┤╫Ф∙╟О╪▄Д╫©Е┘╤Д╩▌Е╓╖Е┬╟Е╟▐Ф▌▓ 
+			int m1=a[N-1],m2=a[N-2];  //m1Д╦╨Ф°─Е╟▐О╪▄m2Д╦╨Ф╛║Е╟▐
 			int t=m1+m2;
 			ans+=t;
 			a[N-2]=t;

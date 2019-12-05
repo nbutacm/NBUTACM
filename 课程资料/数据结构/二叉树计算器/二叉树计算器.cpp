@@ -103,9 +103,9 @@ int main(){
 	fstream fin("A1.txt",ios::in);
 	fstream fout("A1_out.txt",ios::out);
 	while(getline(fin,str)){
-		cout<<"Ç°×º±í´ïÊ½£º "<<str<<endl; 
+		cout<<"å‰ç¼€è¡¨è¾¾å¼ï¼š "<<str<<endl; 
 		string s=Infix_to_Suffix(str);
-		cout<<"ºó×º±í´ïÊ½£º "<<s<<endl; 
+		cout<<"åŽç¼€è¡¨è¾¾å¼ï¼š "<<s<<endl; 
 		stack<node *>st;
 		for(int i=0;i<s.size();i++){
 			if(s[i]==' ') continue;
@@ -133,7 +133,7 @@ int main(){
 		node *Tree=st.top();st.pop();
 		//Print(Tree);
 		//cout<<endl;
-		cout<<"½á¹û£º "<<str<<" = "<<Calculaor(Tree)<<endl<<endl; 
+		cout<<"ç»“æžœï¼š "<<str<<" = "<<Calculaor(Tree)<<endl<<endl; 
 		fout<<str<<" = "<<Calculaor(Tree)<<endl;
 	}
 	fin.close();

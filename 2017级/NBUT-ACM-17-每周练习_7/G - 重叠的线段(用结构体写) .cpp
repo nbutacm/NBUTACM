@@ -18,17 +18,17 @@ int main(){
 	for (int i=0;i<n;i++){
 		cin>>a[i].start>>a[i].end;
 	}
-	sort(a,a+n,cmp);      //¸ù¾İÏß¶ÎµÄ½áÎ²ÉıĞòÅÅĞò 
+	sort(a,a+n,cmp);      //æ ¹æ®çº¿æ®µçš„ç»“å°¾å‡åºæ’åº 
 
 	stuff flag=a[0];
-	for (int i=1;i<n;i++){                //Ã¿Á½ÌõÏß¶Î¾ÍÈıÖÖÇé¿ö 
-		if(flag.end<=a[i].start){         //µÚÒ»ÖÖ Á½ÌõÏß¶ÎÃ»ÓĞÖØºÏ 
+	for (int i=1;i<n;i++){                //æ¯ä¸¤æ¡çº¿æ®µå°±ä¸‰ç§æƒ…å†µ 
+		if(flag.end<=a[i].start){         //ç¬¬ä¸€ç§ ä¸¤æ¡çº¿æ®µæ²¡æœ‰é‡åˆ 
 			flag=a[i];
 		}
-		else if(flag.end>=a[i].end){          //µÚ¶şÖÖ Á½ÌõÏß¶ÎÍêÈ«ÖØºÏ 
+		else if(flag.end>=a[i].end){          //ç¬¬äºŒç§ ä¸¤æ¡çº¿æ®µå®Œå…¨é‡åˆ 
 			Max=max(Max,a[i].end-a[i].start);
 		}
-		else if(flag.end<=a[i].end){          //µÚÈıÖÖ Á½ÌõÏß¶Î ²¿·ÖÖØºÏ 
+		else if(flag.end<=a[i].end){          //ç¬¬ä¸‰ç§ ä¸¤æ¡çº¿æ®µ éƒ¨åˆ†é‡åˆ 
 			Max=max(Max,flag.end-a[i].start);
 			flag=a[i];
 		}

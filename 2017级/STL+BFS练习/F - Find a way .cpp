@@ -4,20 +4,20 @@
 #include <string.h>  
 using namespace std;  
   
-char map[202][202];//µØÍ¼
-int vis[202][202];  //±ê¼ÇÊÇ·ñ×ß¹ı 
-int ans[202][202];  //±ê¼Ç×îÉÙ²½Êı 
-int flag[202][202]; //±ê¼Ç±»¼¸¸öÈË×ß¹ı
+char map[202][202];//åœ°å›¾
+int vis[202][202];  //æ ‡è®°æ˜¯å¦èµ°è¿‡ 
+int ans[202][202];  //æ ‡è®°æœ€å°‘æ­¥æ•° 
+int flag[202][202]; //æ ‡è®°è¢«å‡ ä¸ªäººèµ°è¿‡
 int dx[4]={0,0,-1,1};  
-int dy[4]={1,-1,0,0};//·½Ïò  
-int n,m;//µØÍ¼´óĞ¡  
-int yx,yy,mx,my;//YµÄ×ø±ê£¬MµÄ×ø±ê  
+int dy[4]={1,-1,0,0};//æ–¹å‘  
+int n,m;//åœ°å›¾å¤§å°  
+int yx,yy,mx,my;//Yçš„åæ ‡ï¼ŒMçš„åæ ‡  
 
 struct node{  
     int x,y,setp;  
 };  
   
-void bfs(int x,int y)//¹ãËÑ  
+void bfs(int x,int y)//å¹¿æœ  
 {  
 	memset(vis,0,sizeof(vis)); 
     queue<node>q;  
@@ -76,8 +76,8 @@ int main(){
         int minn=999999999;     
         for(int i=0;i<n;i++){ 
             for(int j=0;j<m;j++){  
-            	if(map[i][j]=='@'&&flag[i][j]==2){//±ØĞë±£Ö¤´Ë´¦@±»Á½¸öÈË·ÃÎÊ¹ı£¡
-                	minn=min(minn,ans[i][j]);//Ä³¸öKFCµØµãÁ½Õßµ½´ïµÄ×Ü²½ÊıÖ®ºÍ£¬È¡×îĞ¡Öµ¡£  
+            	if(map[i][j]=='@'&&flag[i][j]==2){//å¿…é¡»ä¿è¯æ­¤å¤„@è¢«ä¸¤ä¸ªäººè®¿é—®è¿‡ï¼
+                	minn=min(minn,ans[i][j]);//æŸä¸ªKFCåœ°ç‚¹ä¸¤è€…åˆ°è¾¾çš„æ€»æ­¥æ•°ä¹‹å’Œï¼Œå–æœ€å°å€¼ã€‚  
             	}  
         	}  
         }

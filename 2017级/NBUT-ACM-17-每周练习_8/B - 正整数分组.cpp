@@ -11,7 +11,7 @@ int main(){
 	for(int i=0;i<n;i++){
 		cin>>a[i];
 		sum+=a[i];
-	}                                     //可以看成01背包 
+	}                                     //鍙互鐪嬫垚01鑳屽寘 
 	for(int i=0;i<n;i++){
 		for(int j=sum/2;j>=a[i];j--){
 			dp[j]=max(dp[j],dp[j-a[i]]+a[i]);

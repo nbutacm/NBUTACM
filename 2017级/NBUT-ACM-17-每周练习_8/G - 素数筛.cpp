@@ -3,19 +3,19 @@
 using namespace std;
 
 const int N = 1e7 + 5;
-bool isprime[N];//isprime[i]±íÊ¾iÊÇ²»ÊÇÖÊÊı
-int prime[N];//prime[N]ÓÃÀ´´æÖÊÊı  ´Ó1¿ªÊ¼
-int tot=1;//tot±íÊ¾[2£¬N]Ö®¼äÖÊÊıµÄÊıÁ¿
+bool isprime[N];//isprime[i]è¡¨ç¤ºiæ˜¯ä¸æ˜¯è´¨æ•°
+int prime[N];//prime[N]ç”¨æ¥å­˜è´¨æ•°  ä»1å¼€å§‹
+int tot=1;//totè¡¨ç¤º[2ï¼ŒN]ä¹‹é—´è´¨æ•°çš„æ•°é‡
 void init(){
-    for(int i = 2; i < N; i ++) isprime[i] = true;//³õÊ¼»¯ÎªÖÊÊı
+    for(int i = 2; i < N; i ++) isprime[i] = true;//åˆå§‹åŒ–ä¸ºè´¨æ•°
     for(int i = 2; i < N; i++){
-        if(isprime[i]){         //°ÑÖÊÊı´æÆğÀ´
+        if(isprime[i]){         //æŠŠè´¨æ•°å­˜èµ·æ¥
 			prime[tot]=i;
 			tot++;
 		}
         for(int j = 1; j <= tot && i * prime[j] < N; j++){
-            isprime[i * prime[j]] = false;         //ÖÊÊıµÄ±¶ÊıÒ»¶¨²»ÊÇÖÊÊı
-            if(i % prime[j] == 0) break;           //±£Ö¤Ã¿¸öºÏÊı±»Ëü×îĞ¡µÄÖÊÒòÊıÉ¸È¥
+            isprime[i * prime[j]] = false;         //è´¨æ•°çš„å€æ•°ä¸€å®šä¸æ˜¯è´¨æ•°
+            if(i % prime[j] == 0) break;           //ä¿è¯æ¯ä¸ªåˆæ•°è¢«å®ƒæœ€å°çš„è´¨å› æ•°ç­›å»
         }
     }
 }

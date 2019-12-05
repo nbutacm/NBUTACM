@@ -9,7 +9,7 @@ using namespace std;
 ll dp[50005];
 ll n,v;
 
-// ±³°üÄ£°å 
+// èƒŒåŒ…æ¨¡æ¿ 
 
 void ZeroOnePack(ll cost,ll value){//01
 	for(ll j=v;j>=cost;j--){
@@ -17,19 +17,19 @@ void ZeroOnePack(ll cost,ll value){//01
 	}
 }
 
-void CompletePack(ll cost,ll value){//ÍêÈ«
+void CompletePack(ll cost,ll value){//å®Œå…¨
 	for(ll j=cost;j<=v;j++){
 		dp[j]=max(dp[j],dp[j-cost]+value);
 	}
 }
 
-void MultiplePack(ll cost,ll value,ll cnt){//¶àÖØ
-	if(v<=cnt*cost){//Èç¹û×ÜÈÝÁ¿±ÈÕâ¸öÎïÆ·µÄÈÝÁ¿ÒªÐ¡,ÄÇÃ´Õâ¸öÎïÆ·¿ÉÒÔÖ±µ½È¡Íê,Ïàµ±ÓÚÍêÈ«±³°ü.
+void MultiplePack(ll cost,ll value,ll cnt){//å¤šé‡
+	if(v<=cnt*cost){//å¦‚æžœæ€»å®¹é‡æ¯”è¿™ä¸ªç‰©å“çš„å®¹é‡è¦å°,é‚£ä¹ˆè¿™ä¸ªç‰©å“å¯ä»¥ç›´åˆ°å–å®Œ,ç›¸å½“äºŽå®Œå…¨èƒŒåŒ….
 		CompletePack(cost,value);
 		return ;
 	}
-	else{//·ñÔò¾Í½«¶àÖØ±³°ü×ª»¯Îª01±³°ü
-		/********¶þ½øÖÆÓÅ»¯**********/
+	else{//å¦åˆ™å°±å°†å¤šé‡èƒŒåŒ…è½¬åŒ–ä¸º01èƒŒåŒ…
+		/********äºŒè¿›åˆ¶ä¼˜åŒ–**********/
 		ll k=1;
 		while(k<=cnt){
 			ZeroOnePack(k*cost,k*value);
@@ -37,7 +37,7 @@ void MultiplePack(ll cost,ll value,ll cnt){//¶àÖØ
 			k=2*k;
 		}
 		ZeroOnePack(cnt*cost,cnt*value);
-		/********±©Á¦³¬Ê±*************/
+		/********æš´åŠ›è¶…æ—¶*************/
 		/*for(ll i=1;i<=cnt;i++){
             ZeroOnePack(i*cost,i*value);
 		}*/

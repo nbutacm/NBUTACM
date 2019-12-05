@@ -2,7 +2,7 @@
 
 int main(void) {
 	int a, b;
-	while (scanf("%d %d", &a, &b)!= EOF) {   //»òÕß while (~scanf("%d%d", &a, &b)) 
+	while (scanf("%d %d", &a, &b)!= EOF) {   //æˆ–è€… while (~scanf("%d%d", &a, &b)) 
 		printf("%d\n", a + b);
 	}
 	

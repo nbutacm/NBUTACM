@@ -9,51 +9,51 @@ Image::Image()
 	m_pData = (unsigned char *)null;
 }
 
-//Í¨¹ı¾ø¶ÔÂ·¾¶ÊäÈëÍ¼ÏñÊı¾İ£¬¿í£¬¸ß£¬Êı¾İ
+//é€šè¿‡ç»å¯¹è·¯å¾„è¾“å…¥å›¾åƒæ•°æ®ï¼Œå®½ï¼Œé«˜ï¼Œæ•°æ®
 Image::Image(string str)
 {
 	const char * imgPath = str.c_str();
 	fstream rfile;
     rfile.open(imgPath,std::fstream::in|std::fstream::binary);
 
-	//Òì³£´¦Àí
+	//å¼‚å¸¸å¤„ç†
     if(!rfile)
     {
         cerr<<"Open image failed!"<<std::endl;
 		return;
     }
 
-	//²âÊÔÎÄ¼ş³¤¶È
+	//æµ‹è¯•æ–‡ä»¶é•¿åº¦
 	//rfile.seekg(0,std::ios::end);
 	//long length = rfile.tellg();
 
-	//½«Ö¸ÕëÒÆÖÁÎÄ¼ş¿ªÍ·
+	//å°†æŒ‡é’ˆç§»è‡³æ–‡ä»¶å¼€å¤´
 	rfile.seekg(0,std::ios::beg);
-	char a;//²âÊÔbmpÎÄ¼şµÚÒ»¸ö×Ö·ûÊÇ·ñÎª¡®B¡¯
-	char b;//²âÊÔbmpÎÄ¼şµÚ¶ş¸ö×Ö·ûÊÇ·ñÎª¡®M¡¯
+	char a;//æµ‹è¯•bmpæ–‡ä»¶ç¬¬ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸ºâ€˜Bâ€™
+	char b;//æµ‹è¯•bmpæ–‡ä»¶ç¬¬äºŒä¸ªå­—ç¬¦æ˜¯å¦ä¸ºâ€˜Mâ€™
 	rfile.read(&a,1);
 	rfile.read(&b,1);
 	if('B'!=a || 'M' != b)
 	{
-		cerr<<"´ò¿ªµÄÎª·ÇÎ»Í¼ÎÄ¼ş!"<<std::endl;
+		cerr<<"æ‰“å¼€çš„ä¸ºéä½å›¾æ–‡ä»¶!"<<std::endl;
 		return;
 	}
 
-	rfile.seekg(18,std::ios::beg);//ÒÆ¶¯18Î»µ½Î»Í¼¿í¶ÈÎ»ÖÃ
+	rfile.seekg(18,std::ios::beg);//ç§»åŠ¨18ä½åˆ°ä½å›¾å®½åº¦ä½ç½®
 	rfile.read((char*)&m_width,sizeof(long));
 	rfile.read((char*)&m_height,sizeof(long));
 
-	//¸øm_pData·ÖÅäÄÚ´æ¿é
+	//ç»™m_pDataåˆ†é…å†…å­˜å—
 	m_pData = new unsigned char[m_width*m_height];
 
-	rfile.seekg(10,std::ios::beg);//ÒÆ¶¯10Î»µ½Î»Í¼´æ´¢Î»ÖÃµØÖ·
-	long move;//Î»Í¼Êı¾İÎ»ÖÃ
+	rfile.seekg(10,std::ios::beg);//ç§»åŠ¨10ä½åˆ°ä½å›¾å­˜å‚¨ä½ç½®åœ°å€
+	long move;//ä½å›¾æ•°æ®ä½ç½®
 	rfile.read((char*)&move,sizeof(long));
 
-	rfile.seekg(move,std::ios::beg);//ÒÆ¶¯moveÎ»µ½Î»Í¼Êı¾İ´æ´¢Î»ÖÃ
+	rfile.seekg(move,std::ios::beg);//ç§»åŠ¨moveä½åˆ°ä½å›¾æ•°æ®å­˜å‚¨ä½ç½®
 	rfile.read((char*)m_pData,m_width*m_height);
 
-	//a = m_pData[0];//²âÊÔ
+	//a = m_pData[0];//æµ‹è¯•
 
 
 }
@@ -117,17 +117,17 @@ long Image::GetHeight()
 	return m_height;
 }
 
-//ÇóºÍºóµÄÖµ±£´æÔÚimg1¶ÔÏóÖĞ,×¢ÒâË½ÓĞ³ÉÔ±ÊÇ¿ÉÒÔÖ±½Ó·ÃÎÊµÄ
+//æ±‚å’Œåçš„å€¼ä¿å­˜åœ¨img1å¯¹è±¡ä¸­,æ³¨æ„ç§æœ‰æˆå‘˜æ˜¯å¯ä»¥ç›´æ¥è®¿é—®çš„
 Image& operator +(Image & img1, Image & img2)
 {
 	if(0 == img1.GetWidth() || 0 == img1.GetHeight()||0 == img2.GetWidth()||0 == img2.GetHeight())
 	{
-		cerr << "ÓĞ²»´æÔÚµÄÍ¼ÏñÊı¾İ" << endl;
+		cerr << "æœ‰ä¸å­˜åœ¨çš„å›¾åƒæ•°æ®" << endl;
 		return img1;
 	}
 	if(img1.GetWidth()!=img2.GetWidth() || img1.GetHeight() != img2.GetHeight())
 	{
-		cerr << "Á½ÕÅÍ¼ÏñÊı¾İ¿í¸ß²»Ò»ÖÂ" << endl;
+		cerr << "ä¸¤å¼ å›¾åƒæ•°æ®å®½é«˜ä¸ä¸€è‡´" << endl;
 		return img1;
 	}
 

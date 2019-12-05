@@ -1,4 +1,4 @@
-// �Ȱѷ�Χ�ڵ�����ˮ�ɻ����ҳ��� 
+// 先把范围内的所有水仙花数找出来 
 
 #include <stdio.h>  
 #include <string.h>  
@@ -17,7 +17,7 @@ int main(){
 }
 
 
-// �����ж�ÿһ�����ǲ���ˮ�ɻ���
+// 暴力判断每一个数是不是水仙花数
 #include <iostream>
 #include <math.h>
 #include <string.h>

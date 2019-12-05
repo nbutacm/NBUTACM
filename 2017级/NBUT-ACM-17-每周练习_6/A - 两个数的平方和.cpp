@@ -8,7 +8,7 @@ int main(){
 	bool flag=true;
 	
 	cin>>n;
-	for(int i=0;i*i<=n;i++){           //i ÒªÇó ´Ó 00000000  ¿ªÊ¼ 
+	for(int i=0;i*i<=n;i++){           //i è¦æ±‚ ä»Ž 00000000  å¼€å§‹ 
 		int j=sqrt((double)(n-i*i));
 		if(j*j+i*i==n&&i<=j){
 			cout<<i<<" "<<j<<endl;

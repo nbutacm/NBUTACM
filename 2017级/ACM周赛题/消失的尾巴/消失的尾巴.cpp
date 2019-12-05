@@ -8,7 +8,7 @@ int main(){
 	while(cin>>a>>b){
 		a=a*100;
 		sum=0;
-		for(int i=0;i<100;i++){    //注意100是不能取到的
+		for(int i=0;i<100;i++){    //娉ㄦ剰100鏄笉鑳藉彇鍒扮殑
 			if((a+i)%b==0){
 				sum++;
 			}

@@ -4,10 +4,10 @@
 #include<cstdlib>
 #include<ctime>
 
-#define FILE_INPUT 1    //ÊÇ·ñÊäÈëµ½ÎÄ¼ş
-#define MAX 100         //×î¶àÈËÊı
-#define N_M 100           //Ëæ»úÉú³ÉµÄÄĞÅ®×î´óÈËÊıÏŞ¶¨
-#define T 100             //×éÊıÏŞ¶¨
+#define FILE_INPUT 1    //æ˜¯å¦è¾“å…¥åˆ°æ–‡ä»¶
+#define MAX 100         //æœ€å¤šäººæ•°
+#define N_M 100           //éšæœºç”Ÿæˆçš„ç”·å¥³æœ€å¤§äººæ•°é™å®š
+#define T 100             //ç»„æ•°é™å®š
 using namespace std;
 
 int main()
@@ -66,7 +66,7 @@ int main()
                 b = t;
             }
 
-            //È¥ÖØ¸´ÏÖÏó
+            //å»é‡å¤ç°è±¡
             if(ma[a][b] == x || ma[a][b] == 3){
                 continue;
             }

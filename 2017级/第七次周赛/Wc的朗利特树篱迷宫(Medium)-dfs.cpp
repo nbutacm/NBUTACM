@@ -12,7 +12,7 @@ int dx[4]={1,-1,0,0};
 int dy[4]={0,0,1,-1};
 
 void dfs(int x,int y,int step){
-	if(step>ans) return;   //¼ôÖ¦£¨Èç¹ûstep±Èans»¹´óµÄ»°£¬Ã»±ØÒªÔÙÍùÏÂËÑË÷ÏÂÈ¥ÁË£© 
+	if(step>ans) return;   //å‰ªæï¼ˆå¦‚æœstepæ¯”ansè¿˜å¤§çš„è¯ï¼Œæ²¡å¿…è¦å†å¾€ä¸‹æœç´¢ä¸‹å»äº†ï¼‰ 
 	if(pic[x][y]=='E') ans=min(ans,step);
 	else{
 		vis[x][y]=1;

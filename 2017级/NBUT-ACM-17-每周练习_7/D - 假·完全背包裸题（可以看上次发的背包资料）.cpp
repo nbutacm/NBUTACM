@@ -1,4 +1,4 @@
-// 完全背包
+// 瀹屽叏鑳屽寘
 
 #include <iostream>
 #include <string.h>
@@ -24,7 +24,7 @@ int main()
 }
 
 
-// 直接判断
+// 鐩存帴鍒ゆ柇
 
 #include <iostream>
 using namespace std;

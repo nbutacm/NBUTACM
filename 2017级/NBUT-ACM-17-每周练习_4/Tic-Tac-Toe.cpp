@@ -9,22 +9,22 @@ char o;
 
 bool check(int x,int y,char o){
 	int all=0;
-	//ох╨Авею╢
+	//Е┘┬Ф╗╙Г²─Ф²╔
 	int num=0;
 	for(int i=0;i<5;i+=2){
 		if(pic[x][i]==o) num++;
 	}
 	if(num==3) return true;
 	else if(num>=2) all++;
-	//тыйЗвею╢ 
+	//Е├█Г╚√Г²─Ф²╔ 
 	num=0;
 	for(int i=0;i<3;i++){
 		if(pic[i][y]==o) num++;
 	}
 	if(num==3) return true;
 	else if(num>=2) all++;
-	//тып╠вею╢
-	//ох╢свСио╣╫сроб 
+	//Е├█Ф√°Г²─Ф²╔
+	//Е┘┬Д╩▌Е╥╕Д╦┼Е┬╟Е▐ЁД╦▀ 
 	num=0;
 	if((x==0&&y==0)||(x==2&&y==4)||(x==1&&y==2)){
 		for(int i=0;i<3;i++){
@@ -33,7 +33,7 @@ bool check(int x,int y,char o){
 	}
 	if(num==3) return true;
 	else if(num>=2) all++;
-	//ты╢свСоб╣╫срио 
+	//Е├█Д╩▌Е╥╕Д╦▀Е┬╟Е▐ЁД╦┼ 
 	num=0;
 	if((x==2&&y==0)||(x==0&&y==4)||(x==1&&y==2)){
 		for(int i=0;i<3;i++){

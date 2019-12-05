@@ -4,16 +4,16 @@
 int main()
 {
 	char buf[1000];
-	GetCurrentDirectory(1000,buf);//ÓÃÀ´²éµ±Ç°Â·¾¶£¬¿ÉÒÔ½«Í¼Æ¬·ÅÔÚ¸ÃÂ·¾¶ÏÂ
-	//Image img1("D:\\data\\test1.bmp");//Ò²¿ÉÒÔĞŞ¸ÄÎª¾ø¶ÔÂ·¾¶
+	GetCurrentDirectory(1000,buf);//ç”¨æ¥æŸ¥å½“å‰è·¯å¾„ï¼Œå¯ä»¥å°†å›¾ç‰‡æ”¾åœ¨è¯¥è·¯å¾„ä¸‹
+	//Image img1("D:\\data\\test1.bmp");//ä¹Ÿå¯ä»¥ä¿®æ”¹ä¸ºç»å¯¹è·¯å¾„
 	//Image img2("D:\\data\\test2.bmp");
 	Image img1("test1.bmp");
 	Image img2("test2.bmp");
 	
-	cout << "img1µÄ¾ùÖµ" <<img1.Average() << endl;
-	cout << "img1µÄ·½²î" <<img1.Variance() << endl;
-	cout << "img2µÄ¾ùÖµ" <<img2.Average() << endl;
-	cout << "img2µÄ·½²î" <<img2.Variance() << endl;
+	cout << "img1çš„å‡å€¼" <<img1.Average() << endl;
+	cout << "img1çš„æ–¹å·®" <<img1.Variance() << endl;
+	cout << "img2çš„å‡å€¼" <<img2.Average() << endl;
+	cout << "img2çš„æ–¹å·®" <<img2.Variance() << endl;
 
 	img1 = img1 + img2;
 

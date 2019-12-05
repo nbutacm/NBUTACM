@@ -11,7 +11,7 @@ int main(){
 	return 0;
 }
 
-//×îÉÙÄÃ1¸ö,×î¶àÄÃb¸ö,ËùÒÔÈç¹ûaÊÇ(b+1)µÄ±¶Êý,ÄÇÃ´ÎÞÂÛÏÈÊÖÈ¡¶àÉÙ,ºóÊÖ¾ÍÒ»¶¨¿ÉÒÔ´Õ³ö(1+b),×îºóÒ»¸öÒ»¶¨ÊÇºóÊÖµÄ 
+//æœ€å°‘æ‹¿1ä¸ª,æœ€å¤šæ‹¿bä¸ª,æ‰€ä»¥å¦‚æžœaæ˜¯(b+1)çš„å€æ•°,é‚£ä¹ˆæ— è®ºå…ˆæ‰‹å–å¤šå°‘,åŽæ‰‹å°±ä¸€å®šå¯ä»¥å‡‘å‡º(1+b),æœ€åŽä¸€ä¸ªä¸€å®šæ˜¯åŽæ‰‹çš„ 
 
 
-//¹ØÓÚ²©ÞÄ»ù´¡ÖªÊ¶µÄ×Ü½á£º°ÍÊ²²©ÞÄ£¨Bash Game£©¡¢ÄáÄ·²©ÞÈ£¨Nim Game£©¡¢Íþ×ô·ò²©ÞÈ£¨Wythoff Game£©¡£ 
+//å…³äºŽåšå¼ˆåŸºç¡€çŸ¥è¯†çš„æ€»ç»“ï¼šå·´ä»€åšå¼ˆï¼ˆBash Gameï¼‰ã€å°¼å§†åšå¥•ï¼ˆNim Gameï¼‰ã€å¨ä½å¤«åšå¥•ï¼ˆWythoff Gameï¼‰ã€‚ 

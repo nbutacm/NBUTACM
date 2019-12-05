@@ -15,7 +15,7 @@ int main(){
 		if(b[a[i]]==0){
 			ans++;
 			b[a[i]]=1;
-		}  //ans表示字符串中有几个不同的字符 
+		}  //ans琛ㄧず瀛楃涓蹭腑鏈夊嚑涓笉鍚岀殑瀛楃 
 	}	
 	if(len<n) cout<<"impossible"<<endl;
 	else{

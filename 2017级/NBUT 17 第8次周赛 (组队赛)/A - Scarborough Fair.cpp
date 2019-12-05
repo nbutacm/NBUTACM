@@ -1,6 +1,6 @@
 //A - Scarborough Fair    CodeForces - 897A
-// ½«l-rÖ®¼äµÄc1»»³Éc2
-//×¢Òâ lºÍr ÊÇÒÔ1 ¿ªÊ¼µÄ£¬¶ø×Ö·û´®ÏÂ±êÊÇÒÔ0¿ªÊ¼µÄ 
+// å°†l-rä¹‹é—´çš„c1æ¢æˆc2
+//æ³¨æ„ lå’Œr æ˜¯ä»¥1 å¼€å§‹çš„ï¼Œè€Œå­—ç¬¦ä¸²ä¸‹æ ‡æ˜¯ä»¥0å¼€å§‹çš„ 
 
 #include<iostream>
 #include<string>

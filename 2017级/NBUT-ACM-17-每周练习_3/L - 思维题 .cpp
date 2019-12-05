@@ -16,10 +16,10 @@ int main(){
 }
 
 
-// ÌâÒâ£º´ÓXÊý×éÖÐÑ¡ÔñÒ»¸öÊý£¬´ÓYÊý×éÖÐÑ¡ÔñÒ»¸öÊý 
-//      ½«ÕâÁ½¸öÊý½øÐÐÒì»ò²Ù×÷µÃµ½Ò»¸öÐÂµÄÊý  ¼´ N=X^Y   ÕâÑùÎªpair£¨X£¬Y£© 
-//      Èç¹ûXÊý×é»òÕßYÊý×éÖÐ´æÔÚN  Ôòans+1 
-//     Èç¹ûansÎªÅ¼Êý ÔòKaren»ñÊ¤ Êä³öKaren
-//     ·ñÔò ÎªKoyomi»ñÊ¤ Êä³öKoyomi
+// é¢˜æ„ï¼šä»ŽXæ•°ç»„ä¸­é€‰æ‹©ä¸€ä¸ªæ•°ï¼Œä»ŽYæ•°ç»„ä¸­é€‰æ‹©ä¸€ä¸ªæ•° 
+//      å°†è¿™ä¸¤ä¸ªæ•°è¿›è¡Œå¼‚æˆ–æ“ä½œå¾—åˆ°ä¸€ä¸ªæ–°çš„æ•°  å³ N=X^Y   è¿™æ ·ä¸ºpairï¼ˆXï¼ŒYï¼‰ 
+//      å¦‚æžœXæ•°ç»„æˆ–è€…Yæ•°ç»„ä¸­å­˜åœ¨N  åˆ™ans+1 
+//     å¦‚æžœansä¸ºå¶æ•° åˆ™KarenèŽ·èƒœ è¾“å‡ºKaren
+//     å¦åˆ™ ä¸ºKoyomièŽ·èƒœ è¾“å‡ºKoyomi
 
-//    Èç¹û£¨X£¬Y£©³ÉÁ¢ ÄÇÃ´£¨Y£¬X£©Ò²³ÉÁ¢ ËùÒÔans±Ø¶¨ÎªÅ¼Êý ËùÒÔÒ»¶¨ÊÇKaren»ñÊ¤ 
+//    å¦‚æžœï¼ˆXï¼ŒYï¼‰æˆç«‹ é‚£ä¹ˆï¼ˆYï¼ŒXï¼‰ä¹Ÿæˆç«‹ æ‰€ä»¥anså¿…å®šä¸ºå¶æ•° æ‰€ä»¥ä¸€å®šæ˜¯KarenèŽ·èƒœ 

@@ -6,7 +6,7 @@ int main()
 {
 	
 	char a[300];
-	int num[250];              // ´æ C,H,O,N µÄÊýÁ¿  ¼´ num['C'],num['H'],num['O'],num['N']  
+	int num[250];              // å­˜ C,H,O,N çš„æ•°é‡  å³ num['C'],num['H'],num['O'],num['N']  
 	int n;
 	scanf("%d",&n);
 	getchar();
@@ -26,13 +26,13 @@ int main()
 				m=1; 
 			}
 			else{
-				if(a[i]>='A'&&a[i]<='Z')//Èç¹ûÊÇ×ÖÄ¸ 
+				if(a[i]>='A'&&a[i]<='Z')//å¦‚æžœæ˜¯å­—æ¯ 
 				{       
 					num[flag]+=m;
 					flag=a[i];
 					m=1;
 				}
-				else                     //Èç¹ûÊÇÊý×Ö 
+				else                     //å¦‚æžœæ˜¯æ•°å­— 
 				{                        
 					if(a[i-1]>='A'&&a[i-1]<='Z')
 					{
@@ -42,7 +42,7 @@ int main()
 				}
 			}
 		}
-		num[flag]+=m;             //¸ø×îºóÒ»¸öÔªËØ¼ÓÖµ
+		num[flag]+=m;             //ç»™æœ€åŽä¸€ä¸ªå…ƒç´ åŠ å€¼
 		double ans=12.01*num['C']+1.008*num['H']+16.00*num['O']+14.01*num['N'];
 		printf("%.3lf\n",ans); 
 	} 
