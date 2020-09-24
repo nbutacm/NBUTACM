@@ -25,23 +25,23 @@ LinkedList.h作为链表类，考虑整体的适用性和效率上的不退化�
 
 链表模型
 
-![链表模型](/assets/List_model.png)
+![链表模型](./assets/List_model.png)
 
 Sorter模板模型
 
-![](/assets/Sorter_model.png)
+![](./assets/Sorter_model.png)
 
 HashMap流程
 
-![](/assets/HashMap_flow.png)
+![](./assets/HashMap_flow.png)
 
 HashMap模板模型
 
-![](/assets/HashMap_model.png)
+![](./assets/HashMap_model.png)
 
 双Hash策略说明
 
-![](/assets/双Hash策略.png)
+![](./assets/双Hash策略.png)
 
 # 排序测试
 
